@@ -1,0 +1,18 @@
+<div class="d-flex justify-content-center m-2">
+  <p-selectButton [options]="modeOptions" [(ngModel)]="mode" (onChange)="changeMode()"></p-selectButton>
+</div>
+
+<p-card class="d-flex justify-content-center" [style]="{'width': '70%'}">
+  <div class="row">
+    <div class="col-12">
+      <h1 style="text-align: end;">{{!display ? '0' : display}}</h1>
+    </div>
+  </div>
+  <div *ngFor="let r of rows" class="d-flex justify-content-between">
+    <p-button *ngFor="let k of r" class="d-flex justify-content-center m-3" label="{{k == '=' && mode == 'RPN' ? 'Enter' : k}}" (click)="input(k)"
+      styleClass="{{k == '/' || k == '*' || k == '+' || k == '-' ? 'p-button-lg p-button-raised p-button-secondary' : k == '=' || k == 'Eval' ? 'p-button-lg p-button-raised' : 'p-button-lg p-button-raised p-button-secondary p-button-text'}}"
+      ></p-button>
+  </div>
+</p-card>
+
+<router-outlet></router-outlet>
